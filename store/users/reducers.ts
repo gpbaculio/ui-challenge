@@ -7,7 +7,7 @@ import { UsersActionTypes, UsersStateType } from './types';
 
 const usersInitState: UsersStateType = {
   loading: false,
-  currentUser: {},
+  currentUser: null,
   error: ''
 };
 
@@ -26,6 +26,7 @@ const usersReducer = (state = usersInitState, action: UsersActionTypes) => {
     case FETCH_USER_FAILURE: {
       return {
         ...state,
+        currentUser: null,
         error: action.payload.error,
         loading: false
       };

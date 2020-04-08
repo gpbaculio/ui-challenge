@@ -2,7 +2,7 @@ import { FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE } from "./co
 
 export interface UsersStateType {
   loading: boolean;
-  currentUser: { [key: string]: string };
+  currentUser: UserInfo | null;
   error: string;
 }
 
