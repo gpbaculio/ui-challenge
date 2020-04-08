@@ -1,57 +1,62 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import styled from 'styled-components/native'
+import { Provider } from 'react-redux';
+
+import { store } from './store';
 import UserInfo from './components/UserInfoContainer';
 
 const App = () => {
   const [isLoadingComplete, setIsLoadingComplete] = useState(false);
   return (
-    <AppContainer>
-      <AppBackgroundImg source={require('./assets/RegisterBackground.png')}>
-        <Header />
-        <BodyContainer>
-          <Body>
-            <AvatarContainer>
-              <Avatar source={{ uri: 'https://randomuser.me/api/portraits/women/2.jpg' }} />
-            </AvatarContainer>
-            <UserInfoContainer>
-              <UserInfoHeaderContainer>
-                <Username>Sharmaine Red</Username>
-                <UserInfoSubheaderContainer>
-                  <UserInfoSubheader>Female</UserInfoSubheader>
-                  <VerticalDivider />
-                  <UserInfoSubheader>1 pet</UserInfoSubheader>
-                </UserInfoSubheaderContainer>
-              </UserInfoHeaderContainer>
-              <UserInfo label={'Phone Number:'}  value={'0928 765 4321'}/>
-              <UserInfo label={'Email Address:'}  value={'gpbaculio@gmail.com'}/>
-              <UserInfo label={'Address:'}  value={'Northern Mindanao, Philippines'}/>
-            </UserInfoContainer>
-          </Body>
-        </BodyContainer>
-        <BottomContainer>
-          <BottomHeaderContainer>
-            <BottomHeader bgc={'purple'}>asd</BottomHeader>
-            <BottomHeader bgc={'orange'}>asd</BottomHeader>
-          </BottomHeaderContainer>
-          <PetsContainer>
-            <PetContainer>
-              <PetAvatar source={{ uri: 'https://randomuser.me/api/portraits/women/2.jpg' }} />
-              <PetInfoContainer>
-                <PetName>
-                  Jake
-                </PetName>
-                <PetInfo>
-                  <PetInfoValue>Pomeranian</PetInfoValue>
-                  <VerticalDivider />
-                  <PetInfoValue>1 year old</PetInfoValue>
-                </PetInfo>
-              </PetInfoContainer>
-            </PetContainer>
-          </PetsContainer>
-        </BottomContainer>
-      </AppBackgroundImg>
-    </AppContainer>
+    <Provider store={store}>
+      <AppContainer>
+        <AppBackgroundImg source={require('./assets/RegisterBackground.png')}>
+          <Header />
+          <BodyContainer>
+            <Body>
+              <AvatarContainer>
+                <Avatar source={{ uri: 'https://randomuser.me/api/portraits/women/2.jpg' }} />
+              </AvatarContainer>
+              <UserInfoContainer>
+                <UserInfoHeaderContainer>
+                  <Username>Sharmaine Red</Username>
+                  <UserInfoSubheaderContainer>
+                    <UserInfoSubheader>Female</UserInfoSubheader>
+                    <VerticalDivider />
+                    <UserInfoSubheader>1 pet</UserInfoSubheader>
+                  </UserInfoSubheaderContainer>
+                </UserInfoHeaderContainer>
+                <UserInfo label={'Phone Number:'}  value={'0928 765 4321'}/>
+                <UserInfo label={'Email Address:'}  value={'gpbaculio@gmail.com'}/>
+                <UserInfo label={'Address:'}  value={'Northern Mindanao, Philippines'}/>
+              </UserInfoContainer>
+            </Body>
+          </BodyContainer>
+          <BottomContainer>
+            <BottomHeaderContainer>
+              <BottomHeader bgc={'purple'}>asd</BottomHeader>
+              <BottomHeader bgc={'orange'}>asd</BottomHeader>
+            </BottomHeaderContainer>
+            <PetsContainer>
+              <PetContainer>
+                <PetAvatar source={{ uri: 'https://randomuser.me/api/portraits/women/2.jpg' }} />
+                <PetInfoContainer>
+                  <PetName>
+                    Jake
+                  </PetName>
+                  <PetInfo>
+                    <PetInfoValue>Pomeranian</PetInfoValue>
+                    <VerticalDivider />
+                    <PetInfoValue>1 year old</PetInfoValue>
+                  </PetInfo>
+                </PetInfoContainer>
+              </PetContainer>
+            </PetsContainer>
+          </BottomContainer>
+        </AppBackgroundImg>
+      </AppContainer>
+    </Provider>
   );
 }
 
@@ -106,7 +111,7 @@ const AvatarContainer = styled.View`
   background-color: #fff;
   overflow: hidden;
   border-style: solid;
-  border-width: 2px;
+  border-width: 4px;
   border-color: purple;
 `
 
