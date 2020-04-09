@@ -1,7 +1,9 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, Text, Dimensions} from 'react-native';
+import styled from 'styled-components/native'
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import Profile from '../screens/Profile/Profile';
 
@@ -14,31 +16,28 @@ const NavigationStack = createStackNavigator<NavigationStackParamList>();
 
 const Navigation = () => (
   <NavigationContainer>
-    <NavigationStack.Navigator
-      screenOptions={{
-        headerStyle: {
-          height: 16,
-          backgroundColor: '#fff',
-          borderBottomColor: 'transparent',
-          elevation: 0,
-        },
-        headerRightContainerStyle: {
-          alignItems: 'center',
-          paddingRight: 14,
-        },
-        // headerBackImage: () => (
-        //   <Image source={require('../assets/icons/back.png')} />
-        // ),
-        headerLeftContainerStyle: {
-          alignItems: 'center',
-          marginLeft: 14,
-          paddingRight: 14,
-          marginTop: 8,
-        },
-      }}>
+    <NavigationStack.Navigator>
       <NavigationStack.Screen
         name="Profile"
-        options={{header: () => null}}
+        options={{
+          headerTransparent: true,
+            title: 'Find Compatible Owners',
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              color: '#fff'
+            },
+            headerLeft: () => (
+              <Entypo
+                name={'menu'}
+                size={36}
+                color={'#fff'}
+              />
+            ),
+            headerLeftContainerStyle: {
+              alignItems: 'center',
+              marginLeft: 14,
+            }
+         }}
         component={Profile}
       />
     </NavigationStack.Navigator>

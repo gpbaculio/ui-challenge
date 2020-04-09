@@ -5,12 +5,8 @@ import { Provider, useSelector, useDispatch } from 'react-redux';
 import { Asset } from 'expo-asset'
 import {AppLoading} from 'expo';
 
-import { store, AppReduxState } from './store';
+import { store } from './store';
 import Navigation from './navigation';
-import { fetchUserRequest, fetchUserSuccess, fetchUserFailure } from './store/users/actions';
-import { fetchUser } from './api';
-import Loading from './components/Loading';
-import Error from './components/Error';
 
 const App = () => {
   const [isLoadingComplete, setIsLoadingComplete] = useState(false);

@@ -22,7 +22,7 @@ const Profile = () => {
         const result = res.results[0];
         const userInfo = {
           id: result.login.uuid,
-          avatar: result.picture.medium,
+          avatar: result.picture.large,
           fullName: `${result.name.first} ${result.name.last}`,
           gender: result.gender,
           phone: result.phone,
@@ -36,57 +36,59 @@ const Profile = () => {
       },
     );
   }, [])
-  
-  if (isFetchingUser) return <Loading />
-  
-  if (error) return <Error error={error} />
-
-  return (
-    <AppBackgroundImg source={require('../../assets/RegisterBackground.png')}>
-      <Header />
-      <BodyContainer>
-        <Body>
-          <AvatarContainer>
-            <Avatar source={{ uri: currentUser!.avatar }} />
-          </AvatarContainer>
-          <UserInfoContainer>
-            <UserInfoHeaderContainer>
-              <Username>{currentUser!.fullName}</Username>
-              <UserInfoSubheaderContainer>
-                <UserInfoSubheader>{currentUser!.gender}</UserInfoSubheader>
-                <VerticalDivider />
-                <UserInfoSubheader>1 pet</UserInfoSubheader>
-              </UserInfoSubheaderContainer>
-            </UserInfoHeaderContainer>
-            <UserInfo label={'Phone Number:'}  value={currentUser!.phone}/>
-            <UserInfo label={'Email Address:'}  value={currentUser!.email}/>
-            <UserInfo label={'Address:'}  value={currentUser!.address}/>
-          </UserInfoContainer>
-        </Body>
-      </BodyContainer>
-      <BottomContainer>
-        <BottomHeaderContainer>
-          <BottomHeader bgc={'purple'}>Gallery</BottomHeader>
-          <BottomHeader bgc={'orange'}>My Pet</BottomHeader>
-        </BottomHeaderContainer>
-        <PetsContainer>
-          <PetContainer>
-            <PetAvatar source={{ uri: currentUser!.avatar }} />
-            <PetInfoContainer>
-              <PetName>
-                Jake
-              </PetName>
-              <PetInfo>
-                <PetInfoValue>Pomeranian</PetInfoValue>
-                <VerticalDivider />
-                <PetInfoValue>1 year old</PetInfoValue>
-              </PetInfo>
-            </PetInfoContainer>
-          </PetContainer>
-        </PetsContainer>
-      </BottomContainer>
+  if (isFetchingUser)
+    return <Loading />
+  if (error)
+    return <Error error={error} />
+  if(!currentUser)
+    return null
+  else 
+    return (
+      <AppBackgroundImg source={require('../../assets/RegisterBackground.png')}>
+        <Header />
+        <BodyContainer>
+          <Body>
+            <AvatarContainer>
+              <Avatar source={{ uri: currentUser.avatar }} />
+            </AvatarContainer>
+            <UserInfoContainer>
+              <UserInfoHeaderContainer>
+                <Username>{currentUser.fullName}</Username>
+                <UserInfoSubheaderContainer>
+                  <UserInfoSubheader>{currentUser.gender}</UserInfoSubheader>
+                  <VerticalDivider />
+                  <UserInfoSubheader>1 pet</UserInfoSubheader>
+                </UserInfoSubheaderContainer>
+              </UserInfoHeaderContainer>
+              <UserInfo label={'Phone Number:'}  value={currentUser.phone}/>
+              <UserInfo label={'Email Address:'}  value={currentUser.email}/>
+              <UserInfo label={'Address:'}  value={currentUser.address}/>
+            </UserInfoContainer>
+          </Body>
+        </BodyContainer>
+        <BottomContainer>
+          <BottomHeaderContainer>
+            <BottomHeader bgc={'purple'}>Gallery</BottomHeader>
+            <BottomHeader bgc={'orange'}>My Pet</BottomHeader>
+          </BottomHeaderContainer>
+          <PetsContainer>
+            <PetContainer>
+              <PetAvatar source={{ uri: currentUser.avatar }} />
+              <PetInfoContainer>
+                <PetName>
+                  Jake
+                </PetName>
+                <PetInfo>
+                  <PetInfoValue>Pomeranian</PetInfoValue>
+                  <VerticalDivider />
+                  <PetInfoValue>1 year old</PetInfoValue>
+                </PetInfo>
+              </PetInfoContainer>
+            </PetContainer>
+          </PetsContainer>
+        </BottomContainer>
       </AppBackgroundImg>
-  )
+    )
 }
 
 export default Profile

@@ -12,7 +12,7 @@ export interface FetchUserRequestType {
 
 
 export interface UserInfo {
-  id: number;
+  id: string;
   avatar: string;
   fullName: string;
   gender: string;
