@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
+import { Asset } from 'expo-asset'
 import styled from 'styled-components/native'
 import UserInfo from '../../components/UserInfoContainer'
 import { AppReduxState } from '../../store'
@@ -18,8 +19,9 @@ const Profile = () => {
   useEffect(() => {
     dispatch(fetchUserRequest())
     fetchUser().then(
-      res => {
+      async res => {
         const result = res.results[0];
+        const avatar = await Image.prefetch(result.picture.large)
         const userInfo = {
           id: result.login.uuid,
           avatar: result.picture.large,
